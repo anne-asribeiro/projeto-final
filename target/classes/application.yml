@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    password: 123456
+    url: jdbc:mysql://localhost:3306/lista_de_tarefas
+    username: listadetarefas
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+  
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+        
+server:
+error:
+whitelabel:
+enabled: false
+ 
