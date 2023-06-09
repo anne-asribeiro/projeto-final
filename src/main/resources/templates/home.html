@@ -1,0 +1,58 @@
+
+<head th:replace="~{layoutBase :: head}">
+
+
+</head>
+
+<body>
+
+
+	<div th:replace="~{layoutBase :: navbar}"></div>
+
+	<div class="container mb-2">
+		<h1>Lista de Tarefas</h1>
+		<input class="form-control" id="myInput" type="text" placeholder="Search..">
+		<table class="table  table-hover">
+			<tr class=" table-dark">
+				<th></th>
+				<th scope="col">Titulo</th>
+				<th scope="col">Descrição</th>
+				<th scope="col">Status</th>
+				<th scope="col">Data de Conclusão</th>
+				<th scope="col"></th>
+			</tr>
+
+			<tbody id="myTable">
+				<tr th:each="tarefa : ${listaDeTarefas}">
+					<th scope="row"></th>
+					<td><span th:text="${tarefa.titulo}"></span></td>
+					<td><span th:text="${tarefa.descricao}"></span></td>
+					<td><span th:text="${tarefa.status}"></span></td>
+					<td><span th:text="${tarefa.dataConclusao}"></span></td>
+					<td class="buttons "><a th:href="@{formTarefa/{id}(id=${tarefa.id})}"
+						th:method="get" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+						<a th:href="@{deleteTarefa/{id}(id=${tarefa.id})}" th:method="deleteTarefa"
+						class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<a href="/formTarefa"><button class="btn btn-dark">Nova Tarefa</button></a>
+	</div>
+	
+	
+	
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+
+</html>
